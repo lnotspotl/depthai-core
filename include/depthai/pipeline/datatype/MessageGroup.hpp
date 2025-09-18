@@ -4,6 +4,7 @@
 #include <unordered_map>
 #include <vector>
 
+#include "depthai/utility/api.hpp"
 #include "depthai/common/ADatatypeSharedPtrSerialization.hpp"
 #include "depthai/pipeline/datatype/ADatatype.hpp"
 #include "depthai/pipeline/datatype/Buffer.hpp"
@@ -12,7 +13,7 @@ namespace dai {
 /**
  * MessageGroup message. Carries multiple messages in one.
  */
-class MessageGroup : public Buffer {
+class DEPTHAI_API MessageGroup : public Buffer {
    public:
     std::map<std::string, std::shared_ptr<ADatatype>> group;
 

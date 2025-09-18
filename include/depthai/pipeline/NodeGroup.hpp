@@ -1,11 +1,12 @@
 #pragma once
 
 // project
+#include "depthai/utility/api.hpp"
 #include "depthai/pipeline/Node.hpp"
 
 namespace dai {
 
-class NodeGroup : public Node {
+class DEPTHAI_API NodeGroup : public Node {
    public:
     NodeGroup() = default;
     virtual ~NodeGroup() = default;

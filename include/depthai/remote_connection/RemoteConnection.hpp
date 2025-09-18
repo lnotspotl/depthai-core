@@ -8,6 +8,8 @@
 #include "depthai/pipeline/Pipeline.hpp"
 #include "depthai/utility/Pimpl.hpp"
 
+#include "depthai/utility/api.hpp"
+
 namespace dai {
 
 class RemoteConnectionImpl;
@@ -16,7 +18,7 @@ class RemoteConnectionImpl;
  * @class RemoteConnection
  * @brief Runs a websocket server exposing DepthAI messages as well as a static frontend UI
  */
-class RemoteConnection {
+class DEPTHAI_API RemoteConnection {
    public:
     static constexpr auto DEFAULT_WEBSOCKET_PORT = 8765;  ///< Default WebSocket port.
     static constexpr auto DEFAULT_HTTP_PORT = 8080;       ///< Default HTTP port.

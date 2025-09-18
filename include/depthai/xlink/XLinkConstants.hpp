@@ -1,5 +1,7 @@
 #pragma once
 
+#include "depthai/utility/api.hpp"
+
 #include <chrono>
 #include <cstdint>
 

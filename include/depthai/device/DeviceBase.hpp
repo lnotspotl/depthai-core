@@ -1,5 +1,7 @@
 #pragma once
 
+#include "depthai/utility/api.hpp"
+
 // std
 #include <atomic>
 #include <chrono>
@@ -47,7 +49,7 @@ class PipelineImpl;
 /**
  * The core of depthai device for RAII, connects to device and maintains watchdog, timesync, ...
  */
-class DeviceBase {
+class DEPTHAI_API DeviceBase {
     friend class PipelineImpl;  // Needed for reconnections
 
    public:

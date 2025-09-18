@@ -6,6 +6,7 @@
 #include "depthai/common/Rect.hpp"
 #include "depthai/common/optional.hpp"
 #include "depthai/utility/Serialization.hpp"
+#include "depthai/utility/api.hpp"
 
 namespace dai {
 

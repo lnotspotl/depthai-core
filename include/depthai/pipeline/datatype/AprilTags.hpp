@@ -3,6 +3,7 @@
 #include <unordered_map>
 #include <vector>
 
+#include "depthai/utility/api.hpp"
 #include "depthai/common/Point2f.hpp"
 #include "depthai/pipeline/datatype/Buffer.hpp"
 
@@ -11,7 +12,7 @@ namespace dai {
 /**
  * AprilTag structure.
  */
-struct AprilTag {
+struct DEPTHAI_API AprilTag {
     /**
      * The decoded ID of the tag
      */
@@ -61,7 +62,7 @@ DEPTHAI_SERIALIZE_EXT(AprilTag, id, hamming, decisionMargin, topLeft, topRight, 
 /**
  * AprilTags message.
  */
-class AprilTags : public Buffer {
+class DEPTHAI_API AprilTags : public Buffer {
    public:
     /**
      * Construct AprilTags message.

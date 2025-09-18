@@ -1,10 +1,11 @@
 #pragma once
 
 #include <cstring>
+#include "depthai/utility/api.hpp"
 
 namespace dai {
 
-class Capability {
+class DEPTHAI_API Capability {
    public:
     virtual const char* getName() const = 0;
     // virtual Capability getIntersection(const Capability& other) = 0;

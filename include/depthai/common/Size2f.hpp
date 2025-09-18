@@ -3,6 +3,7 @@
 // std
 #include <cstdint>
 
+#include "depthai/utility/api.hpp"
 #include "depthai/utility/Serialization.hpp"
 
 namespace dai {
@@ -12,7 +13,7 @@ namespace dai {
  *
  * width, height values define the size of the shape/frame
  */
-struct Size2f {
+struct DEPTHAI_API Size2f {
     Size2f() = default;
     Size2f(float width, float height) : width(width), height(height), hasNormalized(false) {}
     Size2f(float width, float height, bool normalized) : width(width), height(height), normalized(normalized), hasNormalized(true) {}

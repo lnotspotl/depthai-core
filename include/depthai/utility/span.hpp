@@ -12,6 +12,8 @@ http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/n4820.pdf
 #ifndef DAI_SPAN_HPP_INCLUDED
 #define DAI_SPAN_HPP_INCLUDED
 
+#include "depthai/utility/api.hpp"
+
 #include <array>
 #include <cstddef>
 #include <cstdint>

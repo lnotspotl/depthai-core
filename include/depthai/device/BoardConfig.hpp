@@ -1,5 +1,7 @@
 #pragma once
 
+#include "depthai/utility/api.hpp"
+
 // std
 #include <cstdint>
 #include <unordered_map>
@@ -21,7 +23,7 @@ namespace dai {
 constexpr static uint32_t BOARD_CONFIG_MAGIC1 = 0x78010000U;
 constexpr static uint32_t BOARD_CONFIG_MAGIC2 = 0x21ea17e6U;
 
-struct BoardConfig {
+struct DEPTHAI_API BoardConfig {
     /// USB related config
     struct USB {
         uint16_t vid = 0x03e7, pid = 0xf63b;

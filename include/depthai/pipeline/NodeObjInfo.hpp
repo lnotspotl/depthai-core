@@ -2,6 +2,7 @@
 
 #include <tuple>
 
+#include "depthai/utility/api.hpp"
 #include "NodeIoInfo.hpp"
 #include "depthai/log/LogLevel.hpp"
 #include "depthai/utility/Serialization.hpp"
@@ -9,7 +10,7 @@
 namespace dai {
 
 /// NodeObj information structure
-struct NodeObjInfo {
+struct DEPTHAI_API NodeObjInfo {
     int64_t id = -1;
     int64_t parentId = -1;
 

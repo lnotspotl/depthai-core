@@ -1,10 +1,13 @@
 #pragma once
+
+#include "depthai/utility/api.hpp"
+
 #include <atomic>
 #include <cstdint>
 
 namespace dai {
 
-class AtomicBool : public std::atomic<bool> {
+class DEPTHAI_API AtomicBool : public std::atomic<bool> {
    public:
     using std::atomic<bool>::atomic;
     AtomicBool() = default;

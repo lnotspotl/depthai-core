@@ -4,6 +4,7 @@
 #include <cstdint>
 
 // project
+#include "depthai/utility/api.hpp"
 #include "depthai/utility/Serialization.hpp"
 
 namespace dai {
@@ -13,7 +14,7 @@ namespace dai {
  *
  * qx,qy,qz,qw coordinates that define a 3D point orientation.
  */
-struct Quaterniond {
+struct DEPTHAI_API Quaterniond {
     Quaterniond() = default;
     Quaterniond(double qx, double qy, double qz, double qw) : qx(qx), qy(qy), qz(qz), qw(qw) {}
     double qx = 0, qy = 0, qz = 0, qw = 1;

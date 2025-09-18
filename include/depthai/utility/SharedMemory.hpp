@@ -1,5 +1,7 @@
 #pragma once
 
+#include "depthai/utility/api.hpp"
+
 // std
 #include <cstdint>
 #include <cstring>
@@ -19,7 +21,7 @@
 namespace dai {
 
 // memory as interface
-class SharedMemory : public Memory {
+class DEPTHAI_API SharedMemory : public Memory {
    protected:
     long fd = -1;
     void* mapping;

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "depthai/utility/api.hpp"
 #include "depthai/utility/Serialization.hpp"
 
 namespace dai {
@@ -7,7 +8,7 @@ namespace dai {
 /**
  * Specifies a connection between nodes IOs
  */
-struct NodeConnectionSchema {
+struct DEPTHAI_API NodeConnectionSchema {
     int64_t node1Id = -1;
     std::string node1OutputGroup;
     std::string node1Output;

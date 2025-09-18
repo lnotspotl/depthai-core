@@ -3,6 +3,7 @@
 #include <ostream>
 #include <vector>
 
+#include "depthai/utility/api.hpp"
 #include "depthai/common/Point3f.hpp"
 #include "depthai/common/Rect.hpp"
 #include "depthai/common/optional.hpp"
@@ -16,7 +17,7 @@ namespace dai {
  *
  * Contains tracklets from object tracker output.
  */
-struct Tracklet {
+struct DEPTHAI_API Tracklet {
     enum class TrackingStatus : std::int32_t {
         NEW,     /**< The object is newly added. */
         TRACKED, /**< The object is being tracked. */

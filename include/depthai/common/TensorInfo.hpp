@@ -4,6 +4,7 @@
 // std
 #include <cstdint>
 #include <ostream>
+#include "depthai/utility/api.hpp"
 
 // project
 #include "depthai/utility/Serialization.hpp"
@@ -11,7 +12,7 @@
 namespace dai {
 
 /// TensorInfo structure
-struct TensorInfo {
+struct DEPTHAI_API TensorInfo {
     enum class StorageOrder : int {
         NHWC = 0x4213,
         NHCW = 0x4231,

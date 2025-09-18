@@ -4,6 +4,7 @@
 #include <unordered_map>
 #include <vector>
 
+#include "depthai/utility/api.hpp"
 #include "depthai/common/ImgTransformations.hpp"
 #include "depthai/common/Point3f.hpp"
 #include "depthai/common/optional.hpp"
@@ -20,7 +21,7 @@ namespace dai {
  *
  * Contains image detection results together with spatial location data.
  */
-struct SpatialImgDetection : public ImgDetection {
+struct DEPTHAI_API SpatialImgDetection : public ImgDetection {
     Point3f spatialCoordinates;
     SpatialLocationCalculatorConfigData boundingBoxMapping;
 };

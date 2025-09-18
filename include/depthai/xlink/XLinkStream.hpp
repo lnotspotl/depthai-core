@@ -1,5 +1,7 @@
 #pragma once
 
+#include "depthai/utility/api.hpp"
+
 // Std
 #include <atomic>
 #include <chrono>
@@ -26,7 +28,7 @@
 
 namespace dai {
 
-class StreamPacketDesc : public streamPacketDesc_t {
+class DEPTHAI_API StreamPacketDesc : public streamPacketDesc_t {
    public:
     StreamPacketDesc() noexcept : streamPacketDesc_t{nullptr, 0, -1, {}, {}} {};
     StreamPacketDesc(const StreamPacketDesc&) = delete;
@@ -69,7 +71,7 @@ class StreamPacketMemory : public StreamPacketDesc, public Memory {
     }
 };
 
-class XLinkStream {
+class DEPTHAI_API XLinkStream {
     // static
     constexpr static int STREAM_OPEN_RETRIES = 5;
     constexpr static std::chrono::milliseconds WAIT_FOR_STREAM_RETRY{50};
@@ -132,11 +134,11 @@ struct XLinkError : public std::runtime_error {
     XLinkError(XLinkError_t statusID, std::string stream, const std::string& message)
         : runtime_error(message), status(statusID), streamName(std::move(stream)) {}
 };
-struct XLinkReadError : public XLinkError {
+struct DEPTHAI_API XLinkReadError : public XLinkError {
     using XLinkError = XLinkError;
     XLinkReadError(XLinkError_t status, const std::string& stream);
 };
-struct XLinkWriteError : public XLinkError {
+struct DEPTHAI_API XLinkWriteError : public XLinkError {
     using XLinkError = XLinkError;
     XLinkWriteError(XLinkError_t status, const std::string& stream);
 };

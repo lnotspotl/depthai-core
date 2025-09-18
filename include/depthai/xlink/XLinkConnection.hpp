@@ -1,5 +1,7 @@
 #pragma once
 
+#include "depthai/utility/api.hpp"
+
 // Std
 #include <atomic>
 #include <chrono>
@@ -24,7 +26,7 @@ namespace dai {
 /**
  * Describes a connected device
  */
-struct DeviceInfo {
+struct DEPTHAI_API DeviceInfo {
     DeviceInfo() = default;
     DeviceInfo(std::string name, std::string deviceId, XLinkDeviceState_t state, XLinkProtocol_t protocol, XLinkPlatform_t platform, XLinkError_t status);
     /**
@@ -49,7 +51,7 @@ struct DeviceInfo {
 /**
  * Represents connection between host and device over XLink protocol
  */
-class XLinkConnection {
+class DEPTHAI_API XLinkConnection {
    public:
     // static API
 

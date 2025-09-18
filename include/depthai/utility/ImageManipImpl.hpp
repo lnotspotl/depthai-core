@@ -1,4 +1,7 @@
 #pragma once
+
+#include "depthai/utility/api.hpp"
+
 #include <string>
 #define _USE_MATH_DEFINES
 

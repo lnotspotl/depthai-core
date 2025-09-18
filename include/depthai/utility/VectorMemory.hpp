@@ -1,5 +1,7 @@
 #pragma once
 
+#include "depthai/utility/api.hpp"
+
 // std
 #include <cstdint>
 #include <cstring>
@@ -11,7 +13,7 @@
 namespace dai {
 
 // memory as interface
-class VectorMemory : public std::vector<std::uint8_t>, public Memory {
+class DEPTHAI_API VectorMemory : public std::vector<std::uint8_t>, public Memory {
    public:
     // using std::vector<std::uint8_t>::vector;
     VectorMemory() = default;

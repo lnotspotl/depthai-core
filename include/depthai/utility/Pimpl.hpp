@@ -2,12 +2,14 @@
 
 #pragma once
 
+#include "depthai/utility/api.hpp"
+
 #include <memory>
 
 namespace dai {
 
 template <typename T>
-class Pimpl {
+class DEPTHAI_API Pimpl {
    private:
     std::unique_ptr<T> m;
 

@@ -5,6 +5,7 @@
 #include <unordered_map>
 #include <vector>
 
+#include "depthai/utility/api.hpp"
 #include "depthai/device/CalibrationHandler.hpp"
 #include "depthai/pipeline/datatype/Buffer.hpp"
 
@@ -16,7 +17,7 @@ namespace dai {
  * Contains information about the 2D spatial distribution of calibration data
  * across the image pair. Generated per frame by the DCL.
  */
-struct CoverageData : public Buffer {
+struct DEPTHAI_API CoverageData : public Buffer {
     CoverageData() = default;
     virtual ~CoverageData() = default;
 
@@ -65,14 +66,14 @@ struct CoverageData : public Buffer {
  * epipolar error metrics.
  */
 
-struct CalibrationQuality : public Buffer {
+struct DEPTHAI_API CalibrationQuality : public Buffer {
     /**
      * Quality metrics for a proposed calibration.
      *
      * Includes rotation differences, predicted depth error changes,
      * and Sampson error comparison between current and new (achievable) calibration.
      */
-    struct Data {
+    struct DEPTHAI_API Data {
         /**
          * Difference in rotation angles (extrinsics) between current and new calibration.
          * Units: degrees [deg].
@@ -141,7 +142,7 @@ struct CalibrationQuality : public Buffer {
  * Provides the newly computed calibration, the previous calibration,
  * and the difference metrics between them.
  */
-struct DynamicCalibrationResult : public Buffer {
+struct DEPTHAI_API DynamicCalibrationResult : public Buffer {
     /**
      * Detailed calibration result data.
      *
@@ -151,7 +152,7 @@ struct DynamicCalibrationResult : public Buffer {
      * - **calibrationDifference**: Quality metrics comparing old vs new calibration
      *   (rotation changes, depth error predictions, Sampson errors).
      */
-    struct Data {
+    struct DEPTHAI_API Data {
         /// Newly generated calibrationHAndler after calibration
         dai::CalibrationHandler newCalibration;
 

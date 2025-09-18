@@ -1,5 +1,7 @@
 // Check for GCC or Clang
 #pragma once
+
+#include "depthai/utility/api.hpp"
 #if defined(__clang__) || defined(__GNUC__)
     // Helper macro to stringify pragma content correctly
     #define DO_PRAGMA(X) _Pragma(#X)

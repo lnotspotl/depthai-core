@@ -1,5 +1,7 @@
 #pragma once
 
+#include "depthai/utility/api.hpp"
+
 // std
 #include <cstdint>
 
@@ -10,7 +12,7 @@
 
 namespace dai {
 
-struct LogMessage {
+struct DEPTHAI_API LogMessage {
     std::string nodeIdName;
     LogLevel level{LogLevel::TRACE};
     Timestamp time;

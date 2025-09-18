@@ -1,8 +1,10 @@
 #pragma once
 
+#include "depthai/utility/api.hpp"
+
 namespace dai {
 
-struct ProfilingData {
+struct DEPTHAI_API ProfilingData {
     long long numBytesWritten;
     long long numBytesRead;
 };

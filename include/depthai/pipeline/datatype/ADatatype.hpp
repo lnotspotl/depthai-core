@@ -2,6 +2,7 @@
 #include <memory>
 #include <vector>
 
+#include "depthai/utility/api.hpp"
 #include "depthai/pipeline/datatype/DatatypeEnum.hpp"
 #include "depthai/utility/Memory.hpp"
 #include "depthai/utility/Serialization.hpp"
@@ -10,7 +11,7 @@
 namespace dai {
 
 /// Abstract message
-class ADatatype {
+class DEPTHAI_API ADatatype {
    protected:
     friend class DataInputQueue;
     friend class StreamMessageParser;

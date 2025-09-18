@@ -1,11 +1,13 @@
 #pragma once
 
+#include "depthai/utility/api.hpp"
+
 #include "depthai/pipeline/Node.hpp"
 #include "depthai/pipeline/ThreadedHostNode.hpp"
 
 namespace dai {
 
-class InputQueue {
+class DEPTHAI_API InputQueue {
     friend class Node::Input;
 
    public:

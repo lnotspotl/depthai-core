@@ -1,5 +1,7 @@
 #pragma once
 
+#include "depthai/utility/api.hpp"
+
 // Taken from PyTorch's arg.h: https://github.com/pytorch/pytorch/blob/main/torch/csrc/api/include/torch/arg.h
 // Thank you Pytorch :)
 

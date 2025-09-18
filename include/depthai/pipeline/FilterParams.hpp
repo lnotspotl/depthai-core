@@ -2,6 +2,7 @@
 
 #include <cstdint>
 
+#include "depthai/utility/api.hpp"
 #include "depthai/utility/Serialization.hpp"
 
 namespace dai {
@@ -13,7 +14,7 @@ enum class MedianFilter : int32_t { MEDIAN_OFF = 0, KERNEL_3x3 = 3, KERNEL_5x5 =
 /**
  * 1D edge-preserving spatial filter using high-order domain transform.
  */
-struct SpatialFilter {
+struct DEPTHAI_API SpatialFilter {
     static constexpr const std::int32_t DEFAULT_DELTA_VALUE = 3;
 
     /**
@@ -54,7 +55,7 @@ struct SpatialFilter {
 /**
  * Temporal filtering with optional persistence.
  */
-struct TemporalFilter {
+struct DEPTHAI_API TemporalFilter {
     static constexpr const std::int32_t DEFAULT_DELTA_VALUE = 3;
 
     /**
@@ -105,7 +106,7 @@ struct TemporalFilter {
  * Speckle filtering.
  * Removes speckle noise.
  */
-struct SpeckleFilter {
+struct DEPTHAI_API SpeckleFilter {
     /**
      * Whether to enable or disable the filter.
      */

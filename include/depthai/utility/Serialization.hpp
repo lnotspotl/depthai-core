@@ -1,5 +1,7 @@
 #pragma once
 
+#include "depthai/utility/api.hpp"
+
 // std
 #include <cstddef>
 #include <cstdint>
@@ -63,7 +65,7 @@ inline bool deserialize(const std::uint8_t* data, std::size_t size, T& obj) {
 }
 
 // NOLINTBEGIN
-class VectorWriter {
+class DEPTHAI_API VectorWriter {
    public:
     template <typename... Args>
     VectorWriter(Args&&... args) : vector{std::forward<Args>(args)...} {}
@@ -219,7 +221,7 @@ inline bool deserialize(const std::vector<std::uint8_t>& data, T& obj) {
     return deserialize<DEFAULT_SERIALIZATION_TYPE>(data, obj);
 }
 
-std::string jsonDisplay(const nlohmann::json& json, int level = 0, int indent = 4);
+DEPTHAI_API std::string jsonDisplay(const nlohmann::json& json, int level = 0, int indent = 4);
 
 }  // namespace utility
 

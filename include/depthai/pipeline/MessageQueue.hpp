@@ -1,5 +1,7 @@
 #pragma once
 
+#include "depthai/utility/api.hpp"
+
 // std
 #include <memory>
 #include <vector>
@@ -14,7 +16,7 @@ namespace dai {
 /**
  * Thread safe queue to send messages between nodes
  */
-class MessageQueue : public std::enable_shared_from_this<MessageQueue> {
+class DEPTHAI_API MessageQueue : public std::enable_shared_from_this<MessageQueue> {
    public:
     /// Alias for callback id
     using CallbackId = int;

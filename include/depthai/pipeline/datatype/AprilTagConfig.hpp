@@ -3,6 +3,7 @@
 #include <unordered_map>
 #include <vector>
 
+#include "depthai/utility/api.hpp"
 #include "depthai/pipeline/datatype/Buffer.hpp"
 
 namespace dai {
@@ -10,7 +11,7 @@ namespace dai {
 /**
  * AprilTagConfig message.
  */
-class AprilTagConfig : public Buffer {
+class DEPTHAI_API AprilTagConfig : public Buffer {
    public:
     AprilTagConfig() = default;
     virtual ~AprilTagConfig() = default;
@@ -78,7 +79,7 @@ class AprilTagConfig : public Buffer {
     /**
      * AprilTag quad threshold parameters.
      */
-    struct QuadThresholds {
+    struct DEPTHAI_API QuadThresholds {
         /**
          * Reject quads containing too few pixels.
          */

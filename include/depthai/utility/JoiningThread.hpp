@@ -1,10 +1,12 @@
 #pragma once
 
+#include "depthai/utility/api.hpp"
+
 #include <thread>
 
 namespace dai {
 
-class JoiningThread : private std::thread {
+class DEPTHAI_API JoiningThread : private std::thread {
    public:
     using std::thread::thread;
     JoiningThread() = default;
@@ -37,7 +39,7 @@ class JoiningThread : private std::thread {
     }
 };
 
-inline void swap(JoiningThread& x, JoiningThread& y) {
+inline DEPTHAI_API void swap(JoiningThread& x, JoiningThread& y) {
     x.swap(y);
 }
 

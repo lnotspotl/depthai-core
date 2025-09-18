@@ -3,6 +3,7 @@
 #include <unordered_map>
 #include <vector>
 
+#include "depthai/utility/api.hpp"
 #include "depthai/pipeline/datatype/Buffer.hpp"
 
 namespace dai {
@@ -10,12 +11,12 @@ namespace dai {
 /**
  * EdgeDetectorConfig message. Carries sobel edge filter config.
  */
-class EdgeDetectorConfig : public Buffer {
+class DEPTHAI_API EdgeDetectorConfig : public Buffer {
    public:
     EdgeDetectorConfig() = default;
     virtual ~EdgeDetectorConfig() = default;
 
-    struct EdgeDetectorConfigData {
+    struct DEPTHAI_API EdgeDetectorConfigData {
         /**
          * Used for horizontal gradient computation in 3x3 Sobel filter
          * Format - 3x3 matrix, 2nd column must be 0

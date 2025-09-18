@@ -1,5 +1,7 @@
 #pragma once
 
+#include "depthai/utility/api.hpp"
+
 // std
 #include <functional>
 #include <memory>
@@ -10,7 +12,7 @@
 
 namespace dai {
 
-class CallbackHandler {
+class DEPTHAI_API CallbackHandler {
     std::thread t;
     std::atomic<bool> running{true};
     std::shared_ptr<XLinkConnection> connection;

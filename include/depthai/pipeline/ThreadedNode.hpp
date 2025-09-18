@@ -1,5 +1,6 @@
 #pragma once
 
+#include "depthai/utility/api.hpp"
 #include "depthai/log/LogLevel.hpp"
 #include "depthai/pipeline/Node.hpp"
 #include "depthai/utility/AtomicBool.hpp"
@@ -8,7 +9,7 @@
 
 namespace dai {
 
-class ThreadedNode : public Node {
+class DEPTHAI_API ThreadedNode : public Node {
    private:
     JoiningThread thread;
     AtomicBool running{false};

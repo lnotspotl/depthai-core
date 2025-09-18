@@ -11,6 +11,8 @@
 // project
 #include <optional>
 
+#include "depthai/utility/api.hpp"
+
 #include "depthai/device/Version.hpp"
 #include "depthai/utility/Pimpl.hpp"
 #include "depthai/xlink/XLinkConnection.hpp"
@@ -19,7 +21,7 @@ namespace dai {
 /**
  * Represents the DepthAI Gate with the methods to interact with it.
  */
-class DeviceGate {
+class DEPTHAI_API DeviceGate {
    public:
     enum class SessionState { NOT_CREATED, CREATED, RUNNING, STOPPED, STOPPING, CRASHED, DESTROYED, ERROR_STATE };
 

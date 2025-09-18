@@ -5,6 +5,7 @@
 #include <vector>
 
 // project
+#include "depthai/utility/api.hpp"
 #include "depthai/common/CameraExposureOffset.hpp"
 #include "depthai/config/config.hpp"
 #include "depthai/pipeline/datatype/Buffer.hpp"
@@ -26,7 +27,7 @@ namespace dai {
 /**
  * ImgFrame message. Carries image data and metadata.
  */
-class ImgFrame : public Buffer, public ProtoSerializable {
+class DEPTHAI_API ImgFrame : public Buffer, public ProtoSerializable {
    public:
     using Buffer::getTimestamp;
     using Buffer::getTimestampDevice;

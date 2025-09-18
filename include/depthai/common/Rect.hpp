@@ -5,6 +5,7 @@
 
 #include "depthai/common/Point2f.hpp"
 #include "depthai/common/Size2f.hpp"
+#include "depthai/utility/api.hpp"
 #include "depthai/utility/Serialization.hpp"
 
 namespace dai {
@@ -15,7 +16,7 @@ namespace dai {
  * x,y coordinates together with width and height that define a rectangle.
  * Can be either normalized [0,1] or absolute representation.
  */
-struct Rect {
+struct DEPTHAI_API Rect {
     // default constructor
     Rect() = default;
     Rect(float x, float y, float width, float height) : x(x), y(y), width(width), height(height) {}

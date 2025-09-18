@@ -1,5 +1,6 @@
 #pragma once
 
+#include "depthai/utility/api.hpp"
 #include <depthai/pipeline/DeviceNode.hpp>
 #include <depthai/pipeline/Node.hpp>
 #include <memory>

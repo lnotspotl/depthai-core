@@ -1,5 +1,7 @@
 #pragma once
 
+#include "depthai/utility/api.hpp"
+
 // std
 #include <cstdint>
 #include <cstring>
@@ -108,7 +110,7 @@ holder(std::move(holder)) {}
 */
 
 // memory as interface
-class Memory {
+class DEPTHAI_API Memory {
    public:
     virtual ~Memory(){};
     virtual span<std::uint8_t> getData() = 0;

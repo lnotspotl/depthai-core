@@ -1,5 +1,7 @@
 #pragma once
 
+#include "depthai/utility/api.hpp"
+
 // C std
 #include <cstdint>
 
@@ -31,7 +33,7 @@ inline NNArchiveConfigVersion getNNArchiveConfigVersion(const NNArchiveConfig& c
     return static_cast<NNArchiveConfigVersion>(config.index());
 }
 
-class NNArchiveVersionedConfig {
+class DEPTHAI_API NNArchiveVersionedConfig {
    public:
     /**
      * @data Should point to a whole compressed NNArchive read to memory if compression is not set to RAW_FS.

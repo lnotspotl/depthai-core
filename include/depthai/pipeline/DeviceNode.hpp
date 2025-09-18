@@ -2,13 +2,15 @@
 
 #include <memory>
 
+#include "depthai/utility/api.hpp"
+
 #include "depthai/device/Device.hpp"
 #include "depthai/pipeline/Node.hpp"
 #include "depthai/pipeline/ThreadedNode.hpp"
 
 namespace dai {
 
-class DeviceNode : public ThreadedNode {
+class DEPTHAI_API DeviceNode : public ThreadedNode {
    protected:
     std::shared_ptr<Device> device;
 
@@ -103,7 +105,7 @@ class DeviceNodeCRTP : public Base {
     friend PipelineImpl;
 };
 
-class HostRunnable {
+class DEPTHAI_API HostRunnable {
    public:
     HostRunnable() = default;
     virtual ~HostRunnable();  // Has to be virtual for std::dynamic_cast to be used reliably

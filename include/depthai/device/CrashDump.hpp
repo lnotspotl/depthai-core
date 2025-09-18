@@ -1,5 +1,7 @@
 #pragma once
 
+#include "depthai/utility/api.hpp"
+
 // std
 #include <cstdint>
 #include <unordered_map>
@@ -11,7 +13,7 @@
 
 namespace dai {
 
-struct CrashDump {
+struct DEPTHAI_API CrashDump {
     struct CrashReport {
         ProcessorType processor;
         std::string errorSource;

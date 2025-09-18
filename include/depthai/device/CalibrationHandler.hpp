@@ -1,6 +1,8 @@
 // IWYU pragma: private, include "depthai/depthai.hpp"
 #pragma once
 #include <filesystem>
+
+#include "depthai/utility/api.hpp"
 #include <string>
 #include <tuple>
 
@@ -29,7 +31,7 @@ namespace dai {
  *  - boardOptions
  *  - productName
  */
-class CalibrationHandler {
+class DEPTHAI_API CalibrationHandler {
    public:
     CalibrationHandler() = default;
 

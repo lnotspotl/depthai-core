@@ -1,6 +1,8 @@
 #pragma once
 
 #include <cstdint>
+
+#include "depthai/utility/api.hpp"
 #include <optional>
 #include <string>
 
@@ -8,7 +10,7 @@
 namespace dai {
 
 /// Version structure
-struct Version {
+struct DEPTHAI_API Version {
     enum class PreReleaseType : uint16_t {
         ALPHA = 0,
         BETA = 1,

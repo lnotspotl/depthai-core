@@ -1,4 +1,7 @@
 #pragma once
+
+#include "depthai/utility/api.hpp"
+
 #include <condition_variable>
 #include <functional>
 #include <limits>
@@ -19,7 +22,7 @@ namespace dai {
 // };
 
 template <typename T>
-class LockingQueue {
+class DEPTHAI_API LockingQueue {
    public:
     LockingQueue() = default;
     explicit LockingQueue(unsigned maxSize, bool blocking = true) {

@@ -3,7 +3,8 @@ cmake_minimum_required(VERSION 3.20)
 include(cmake/depthaiOptions.cmake)
 
 if(WIN32)
-    add_compile_options(/MP)
+    add_compile_options(/MP /bigobj)
+    add_link_options(/FORCE:MULTIPLE)
     set(CMAKE_DEBUG_POSTFIX "d" CACHE STRING "Postfix for debug libraries" FORCE)
 endif()
 
@@ -109,11 +110,6 @@ if(FORCE_COLORED_OUTPUT)
     elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
        add_compile_options(-fcolor-diagnostics)
     endif()
-endif()
-
-# Specify exporting all symbols on Windows
-if(WIN32 AND BUILD_SHARED_LIBS)
-    set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON CACHE BOOL "")
 endif()
 
 ### Constants
@@ -368,6 +364,7 @@ set(TARGET_CORE_SOURCES
     src/utility/LogCollection.cpp
     src/utility/MemoryWrappers.cpp
     src/utility/Serialization.cpp
+    src/utility/identity.cpp
     src/xlink/XLinkConnection.cpp
     src/xlink/XLinkStream.cpp
     src/openvino/OpenVINO.cpp
@@ -451,6 +448,7 @@ if(DEPTHAI_HAVE_RTABMAP_SUPPORT AND DEPTHAI_MERGED_TARGET)
 endif()
 
 add_library(${TARGET_CORE_NAME} ${TARGET_CORE_SOURCES})
+target_compile_definitions(${TARGET_CORE_NAME} PRIVATE DEPTHAI_BUILD)
 add_library("${PROJECT_NAME}::${TARGET_CORE_ALIAS}" ALIAS ${TARGET_CORE_NAME})
 # Specify that we are building core
 target_compile_definitions(${TARGET_CORE_NAME} PUBLIC DEPTHAI_TARGET_CORE)
@@ -925,6 +923,9 @@ if(DEPTHAI_HAVE_OPENCV_SUPPORT AND NOT DEPTHAI_MERGED_TARGET)
     add_library("${PROJECT_NAME}::${TARGET_OPENCV_ALIAS}" ALIAS ${TARGET_OPENCV_NAME})
     # Specifies name of generated IMPORTED target (set to alias)
     set_target_properties(${TARGET_OPENCV_NAME} PROPERTIES EXPORT_NAME ${TARGET_OPENCV_ALIAS})
+    target_compile_definitions(${TARGET_OPENCV_NAME} PRIVATE DEPTHAI_BUILD)
+
+    
 
     # Add default flags
     add_default_flags(${TARGET_OPENCV_NAME})
@@ -954,6 +955,7 @@ endif()
 if(DEPTHAI_HAVE_PCL_SUPPORT AND NOT DEPTHAI_MERGED_TARGET)
         # Add depthai-core-pcl library and depthai::core::pcl alias
         add_library(${TARGET_PCL_NAME} ${TARGET_PCL_SOURCES})
+        target_compile_definitions(${TARGET_PCL_NAME} PRIVATE DEPTHAI_BUILD)
         add_library("${PROJECT_NAME}::${TARGET_PCL_ALIAS}" ALIAS ${TARGET_PCL_NAME})
         # Specifies name of generated IMPORTED target (set to alias)
         set_target_properties(${TARGET_PCL_NAME} PROPERTIES EXPORT_NAME ${TARGET_PCL_ALIAS})
@@ -999,6 +1001,7 @@ if(DEPTHAI_HAVE_RTABMAP_SUPPORT AND NOT DEPTHAI_MERGED_TARGET)
     src/rtabmap/TransformData.cpp
     src/rtabmap/RTABMapVIO.cpp src/rtabmap/RTABMapSLAM.cpp
     )
+    target_compile_definitions(${TARGET_RTABMAP_NAME} PRIVATE DEPTHAI_BUILD)
     add_library("${PROJECT_NAME}::${TARGET_RTABMAP_ALIAS}" ALIAS ${TARGET_RTABMAP_NAME})
     # Specifies name of generated IMPORTED target (set to alias)
     set_target_properties(${TARGET_RTABMAP_NAME} PROPERTIES EXPORT_NAME ${TARGET_RTABMAP_ALIAS})
@@ -1038,6 +1041,7 @@ if(DEPTHAI_HAVE_BASALT_SUPPORT AND NOT DEPTHAI_MERGED_TARGET)
 
     # Add depthai-basalt library and depthai::basalt alias
     add_library(${TARGET_BASALT_NAME} src/basalt/BasaltVIO.cpp )
+    target_compile_definitions(${TARGET_BASALT_NAME} PRIVATE DEPTHAI_BUILD)
     add_library("${PROJECT_NAME}::${TARGET_BASALT_ALIAS}" ALIAS ${TARGET_BASALT_NAME})
 
     # Specifies name of generated IMPORTED target (set to alias)

@@ -1,6 +1,8 @@
 #pragma once
 
 #include <algorithm>
+
+#include "depthai/utility/api.hpp"
 #include <functional>
 #include <memory>
 #include <set>
@@ -35,7 +37,7 @@ class InputQueue;
 /**
  * @brief Abstract Node
  */
-class Node : public std::enable_shared_from_this<Node> {
+class DEPTHAI_API Node : public std::enable_shared_from_this<Node> {
     friend class Pipeline;
     friend class PipelineImpl;
     friend class Device;
@@ -681,7 +683,7 @@ class Node : public std::enable_shared_from_this<Node> {
     virtual void buildInternal() {};
 };
 
-class SourceNode {
+class DEPTHAI_API SourceNode {
    public:
     virtual ~SourceNode() = default;
     virtual NodeRecordParams getNodeRecordParams() const;

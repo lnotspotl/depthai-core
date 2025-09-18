@@ -1,10 +1,11 @@
 #pragma once
 
+#include "depthai/utility/api.hpp"
 #include <depthai/common/Timestamp.hpp>
 
 namespace dai {
 
-struct TraceEvent {
+struct DEPTHAI_API TraceEvent {
     enum Event : std::uint8_t {
         SEND,
         RECEIVE,

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "depthai/utility/api.hpp"
+
 #include <cstdint>
 #include <filesystem>
 
@@ -19,7 +21,7 @@ namespace dai {
 /**
  * Configuration for recording and replaying messages
  */
-struct RecordConfig {
+struct DEPTHAI_API RecordConfig {
     using Profile = dai::VideoEncoderProperties::Profile;
     enum class RecordReplayState { RECORD, REPLAY, NONE };
     enum class CompressionLevel : uint8_t { NONE, FASTEST, FAST, DEFAULT, SLOW, SLOWEST };
@@ -39,7 +41,7 @@ struct RecordConfig {
     CompressionLevel compressionLevel = CompressionLevel::DEFAULT;
 };
 
-struct NodeRecordParams {
+struct DEPTHAI_API NodeRecordParams {
     bool video;
     std::string name;
 };

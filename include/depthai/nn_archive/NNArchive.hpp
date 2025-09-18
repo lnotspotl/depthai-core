@@ -1,5 +1,7 @@
 #pragma once
 #include <cstdint>
+
+#include "depthai/utility/api.hpp"
 #include <depthai/common/ModelType.hpp>
 #include <filesystem>
 #include <memory>
@@ -13,7 +15,7 @@
 
 namespace dai {
 
-struct NNArchiveOptions {
+struct DEPTHAI_API NNArchiveOptions {
     NNArchiveOptions();
 
     // General parameters
@@ -29,7 +31,7 @@ struct NNArchiveOptions {
     DEPTAHI_ARG_DEFAULT(std::filesystem::path, extractFolder, std::filesystem::path());
 };
 
-class NNArchive {
+class DEPTHAI_API NNArchive {
    public:
     /**
      * @brief Construct a new NNArchive object - a container holding a model and its configuration

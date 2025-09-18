@@ -6,6 +6,7 @@
 #include <unordered_map>
 
 // project
+#include "depthai/utility/api.hpp"
 #include "depthai/utility/Serialization.hpp"
 
 namespace dai {

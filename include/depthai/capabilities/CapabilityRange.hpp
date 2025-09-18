@@ -1,3 +1,5 @@
+#pragma once
+
 #include <optional>
 #include <variant>
 #include <vector>
@@ -5,6 +7,7 @@
 // depthai public
 #include <depthai/common/optional.hpp>
 #include <depthai/common/variant.hpp>
+#include <depthai/utility/api.hpp>
 #include <depthai/utility/Serialization.hpp>
 
 namespace dai {

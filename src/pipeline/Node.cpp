@@ -757,4 +757,6 @@ std::vector<Node::DatatypeHierarchy> Node::Input::getPossibleDatatypes() const {
     return possibleDatatypes;
 }
 
+Node::Node(bool conf) : configureMode(conf) {}
+
 }  // namespace dai

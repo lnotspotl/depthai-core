@@ -7,12 +7,13 @@
 #include "depthai/common/Point2f.hpp"
 #include "depthai/common/Rect.hpp"
 #include "depthai/common/Size2f.hpp"
+#include "depthai/utility/api.hpp"
 #include "depthai/utility/Serialization.hpp"
 
 namespace dai {
 
 /// RotatedRect structure
-struct RotatedRect {
+struct DEPTHAI_API RotatedRect {
     Point2f center;
     Size2f size;
     /// degrees, increasing clockwise

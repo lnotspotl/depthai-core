@@ -12,11 +12,12 @@
 #include <depthai/capabilities/CapabilityRange.hpp>
 #include <depthai/common/optional.hpp>
 #include <depthai/pipeline/datatype/ImgFrame.hpp>
+#include <depthai/utility/api.hpp>
 #include <depthai/utility/Serialization.hpp>
 
 namespace dai {
 
-enum struct ImgResizeMode {
+enum struct DEPTHAI_API ImgResizeMode {
     /**
      * Keeps aspect ratio.
      * Crops the image to get the correct output aspect ratio.
@@ -37,7 +38,7 @@ enum struct ImgResizeMode {
     LETTERBOX,
 };
 
-class ImgFrameCapability : public CapabilityCRTP<Capability, ImgFrameCapability> {
+class DEPTHAI_API ImgFrameCapability : public CapabilityCRTP<Capability, ImgFrameCapability> {
    public:
     constexpr static const char* NAME = "dai/img-frame";
     // Capability getIntersection(const Capability& other) override;

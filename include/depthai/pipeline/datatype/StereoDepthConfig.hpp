@@ -4,6 +4,7 @@
 #include <depthai/common/optional.hpp>
 #include <vector>
 
+#include "depthai/utility/api.hpp"
 #include "depthai/pipeline/FilterParams.hpp"
 #include "depthai/pipeline/datatype/Buffer.hpp"
 
@@ -12,7 +13,7 @@ namespace dai {
 /**
  * StereoDepthConfig message.
  */
-class StereoDepthConfig : public Buffer {
+class DEPTHAI_API StereoDepthConfig : public Buffer {
    public:
     /**
      * Construct StereoDepthConfig message.

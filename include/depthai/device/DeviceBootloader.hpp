@@ -7,6 +7,7 @@
 #include <type_traits>
 
 // project
+#include "depthai/utility/api.hpp"
 #include "CallbackHandler.hpp"
 #include "depthai/common/UsbSpeed.hpp"
 #include "depthai/pipeline/Pipeline.hpp"
@@ -27,7 +28,7 @@ namespace fs = std::filesystem;
 /**
  * Represents the DepthAI bootloader with the methods to interact with it.
  */
-class DeviceBootloader {
+class DEPTHAI_API DeviceBootloader {
    public:
     // Alias
     using Type = dai::bootloader::Type;

@@ -4,6 +4,7 @@
 #include <cstdint>
 
 // project
+#include "depthai/utility/api.hpp"
 #include "depthai/utility/Serialization.hpp"
 
 namespace dai {
@@ -13,7 +14,7 @@ namespace dai {
  *
  * x,y,z coordinates that define a 3D point.
  */
-struct Point3f {
+struct DEPTHAI_API Point3f {
     Point3f() = default;
     Point3f(float x, float y, float z) : x(x), y(y), z(z) {}
     float x = 0, y = 0, z = 0;

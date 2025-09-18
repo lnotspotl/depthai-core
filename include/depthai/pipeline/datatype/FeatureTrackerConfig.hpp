@@ -3,6 +3,7 @@
 #include <unordered_map>
 #include <vector>
 
+#include "depthai/utility/api.hpp"
 #include "depthai/pipeline/datatype/Buffer.hpp"
 
 namespace dai {
@@ -10,7 +11,7 @@ namespace dai {
 /**
  * FeatureTrackerConfig message. Carries config for feature tracking algorithm
  */
-class FeatureTrackerConfig : public Buffer {
+class DEPTHAI_API FeatureTrackerConfig : public Buffer {
    public:
     /**
      * Construct FeatureTrackerConfig message.

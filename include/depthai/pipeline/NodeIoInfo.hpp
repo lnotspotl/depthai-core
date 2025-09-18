@@ -1,11 +1,12 @@
 #pragma once
 
+#include "depthai/utility/api.hpp"
 #include "depthai/utility/Serialization.hpp"
 
 namespace dai {
 
 /// NodeIo informations such as name, type, ...
-struct NodeIoInfo {
+struct DEPTHAI_API NodeIoInfo {
     enum class Type { MSender, SSender, MReceiver, SReceiver };
 
     std::string group;

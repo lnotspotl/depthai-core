@@ -1,5 +1,7 @@
 #pragma once
 
+#include "depthai/utility/api.hpp"
+
 #include <nlohmann/json.hpp>
 
 // Check version of nlohmann json

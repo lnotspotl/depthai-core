@@ -9,11 +9,12 @@
 #include <variant>
 #include <vector>
 
+#include "depthai/utility/api.hpp"
 #include "depthai/pipeline/datatype/Buffer.hpp"
 
 namespace dai {
 
-class DynamicCalibrationControl : public Buffer {
+class DEPTHAI_API DynamicCalibrationControl : public Buffer {
    public:
     enum class PerformanceMode : int { DEFAULT, STATIC_SCENERY, OPTIMIZE_SPEED, OPTIMIZE_PERFORMANCE, SKIP_CHECKS };
 

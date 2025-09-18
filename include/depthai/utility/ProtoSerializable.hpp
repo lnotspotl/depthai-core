@@ -1,12 +1,14 @@
 #pragma once
 
+#include "depthai/utility/api.hpp"
+
 #include <cstdint>
 #include <string>
 #include <vector>
 
 namespace dai {
 
-class ProtoSerializable {
+class DEPTHAI_API ProtoSerializable {
    public:
     struct SchemaPair {
         std::string schemaName;

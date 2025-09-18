@@ -5,6 +5,7 @@
 #include <variant>
 #include <vector>
 
+#include "depthai/utility/api.hpp"
 #include "depthai/common/Timestamp.hpp"
 #include "depthai/pipeline/datatype/ADatatype.hpp"
 #include "depthai/pipeline/datatype/DatatypeEnum.hpp"
@@ -17,7 +18,7 @@ class ImgFrame;
 using VisualizeType = std::variant<std::shared_ptr<ImgAnnotations>, std::shared_ptr<ImgFrame>, std::monostate>;
 
 /// Base message - buffer of binary data
-class Buffer : public ADatatype {
+class DEPTHAI_API Buffer : public ADatatype {
    public:
     Buffer() = default;
     Buffer(size_t size);

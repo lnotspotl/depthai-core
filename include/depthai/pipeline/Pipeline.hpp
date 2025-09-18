@@ -1,6 +1,8 @@
 // IWYU pragma: private, include "depthai/depthai.hpp"
 #pragma once
 
+#include "depthai/utility/api.hpp"
+
 // standard
 #include <memory>
 #include <type_traits>
@@ -27,7 +29,7 @@ namespace dai {
 
 namespace fs = std::filesystem;
 
-class PipelineImpl : public std::enable_shared_from_this<PipelineImpl> {
+class DEPTHAI_API PipelineImpl : public std::enable_shared_from_this<PipelineImpl> {
     friend class Pipeline;
     friend class Node;
     friend class DeviceBase;
@@ -237,7 +239,7 @@ class PipelineImpl : public std::enable_shared_from_this<PipelineImpl> {
 /**
  * @brief Represents the pipeline, set of nodes and connections between them
  */
-class Pipeline {
+class DEPTHAI_API Pipeline {
     friend class PipelineImpl;
     friend class Device;
 

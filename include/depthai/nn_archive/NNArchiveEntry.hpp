@@ -1,11 +1,13 @@
 #pragma once
 
+#include "depthai/utility/api.hpp"
+
 // C std
 #include <cstdint>
 
 namespace dai {
 
-class NNArchiveEntry {
+class DEPTHAI_API NNArchiveEntry {
    public:
     enum class Compression : uint8_t {
         /**

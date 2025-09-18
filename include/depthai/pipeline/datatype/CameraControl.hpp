@@ -4,6 +4,7 @@
 #include <unordered_map>
 #include <vector>
 
+#include "depthai/utility/api.hpp"
 #include "depthai/pipeline/datatype/Buffer.hpp"
 
 namespace dai {
@@ -29,7 +30,7 @@ namespace dai {
  *  50Hz mains frequency.
  *
  */
-class CameraControl : public Buffer {
+class DEPTHAI_API CameraControl : public Buffer {
    public:
     CameraControl() = default;
     virtual ~CameraControl() = default;
@@ -381,7 +382,7 @@ class CameraControl : public Buffer {
         // TODO soft sync modes?
     };
 
-    struct ManualExposureParams {
+    struct DEPTHAI_API ManualExposureParams {
         uint32_t exposureTimeUs;
         uint32_t sensitivityIso;
         uint32_t frameDurationUs;
@@ -390,7 +391,7 @@ class CameraControl : public Buffer {
     };
 
     // AE_REGION / AF_REGION
-    struct RegionParams {
+    struct DEPTHAI_API RegionParams {
         uint16_t x;
         uint16_t y;
         uint16_t width;
@@ -401,7 +402,7 @@ class CameraControl : public Buffer {
         DEPTHAI_SERIALIZE(RegionParams, x, y, width, height, priority);
     };
 
-    struct StrobeTimings {
+    struct DEPTHAI_API StrobeTimings {
         /// Start offset in microseconds, relative to exposure window
         int32_t exposureBeginOffsetUs;
         /// End offset in microseconds, relative to exposure window
@@ -412,7 +413,7 @@ class CameraControl : public Buffer {
         DEPTHAI_SERIALIZE(StrobeTimings, exposureBeginOffsetUs, exposureEndOffsetUs, durationUs);
     };
 
-    struct StrobeConfig {
+    struct DEPTHAI_API StrobeConfig {
         /// Enable strobe output
         uint8_t enable;
         /// 1 for normal polarity (high-active), 0 otherwise
