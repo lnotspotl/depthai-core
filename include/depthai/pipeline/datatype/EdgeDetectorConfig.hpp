@@ -4,13 +4,14 @@
 #include <vector>
 
 #include "depthai/pipeline/datatype/Buffer.hpp"
+#include "depthai/utility/export.hpp"
 
 namespace dai {
 
 /**
  * EdgeDetectorConfig message. Carries sobel edge filter config.
  */
-class EdgeDetectorConfig : public Buffer {
+class DEPTHAI_API EdgeDetectorConfig : public Buffer {
    public:
     EdgeDetectorConfig() = default;
     virtual ~EdgeDetectorConfig() = default;

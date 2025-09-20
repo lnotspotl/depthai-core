@@ -13,6 +13,7 @@
 
 #include "depthai/pipeline/ThreadedHostNode.hpp"
 #include "depthai/pipeline/datatype/ImgFrame.hpp"
+#include "depthai/utility/export.hpp"
 
 namespace dai {
 namespace node {
@@ -22,7 +23,7 @@ using XLinkOutProperties = ::dai::internal::XLinkOutProperties;
 /**
  * @brief Replay node, used to replay a file to a source node
  */
-class ReplayVideo : public NodeCRTP<ThreadedHostNode, ReplayVideo> {
+class DEPTHAI_API ReplayVideo : public NodeCRTP<ThreadedHostNode, ReplayVideo> {
    private:
     std::optional<std::tuple<int, int>> size;
     std::optional<float> fps;
@@ -33,6 +34,11 @@ class ReplayVideo : public NodeCRTP<ThreadedHostNode, ReplayVideo> {
     bool loop = true;
 
    public:
+    using NodeCRTP::NodeCRTP;
+
+    ReplayVideo() = default;
+    ReplayVideo(std::unique_ptr<Properties>) {}
+
     constexpr static const char* NAME = "ReplayVideo";
 
     /**
@@ -40,7 +46,7 @@ class ReplayVideo : public NodeCRTP<ThreadedHostNode, ReplayVideo> {
      *
      * Default queue is blocking with size 8
      */
-    Output out{*this, {"out", DEFAULT_GROUP, {{{DatatypeEnum::ImgFrame, false}}}}};
+    Output out{this, {"out", DEFAULT_GROUP, {{{DatatypeEnum::ImgFrame, false}}}}};
 
     void run() override;
 
@@ -63,7 +69,7 @@ class ReplayVideo : public NodeCRTP<ThreadedHostNode, ReplayVideo> {
 /**
  * @brief Replay node, used to replay a file to a source node
  */
-class ReplayMetadataOnly : public NodeCRTP<ThreadedHostNode, ReplayMetadataOnly> {
+class DEPTHAI_API ReplayMetadataOnly : public NodeCRTP<ThreadedHostNode, ReplayMetadataOnly> {
    private:
     std::filesystem::path replayFile;
 
@@ -71,6 +77,11 @@ class ReplayMetadataOnly : public NodeCRTP<ThreadedHostNode, ReplayMetadataOnly>
     bool loop = true;
 
    public:
+    using NodeCRTP::NodeCRTP;
+
+    ReplayMetadataOnly() = default;
+    ReplayMetadataOnly(std::unique_ptr<Properties>) {}
+
     constexpr static const char* NAME = "ReplayMetadataOnly";
 
     /**
@@ -78,7 +89,7 @@ class ReplayMetadataOnly : public NodeCRTP<ThreadedHostNode, ReplayMetadataOnly>
      *
      * Default queue is blocking with size 8
      */
-    Output out{*this, {"out", DEFAULT_GROUP, {{{DatatypeEnum::Buffer, true}}}}};
+    Output out{this, {"out", DEFAULT_GROUP, {{{DatatypeEnum::Buffer, true}}}}};
 
     void run() override;
 

@@ -4,11 +4,12 @@
 #include "depthai/pipeline/Node.hpp"
 #include "depthai/utility/AtomicBool.hpp"
 #include "depthai/utility/JoiningThread.hpp"
+#include "depthai/utility/export.hpp"
 #include "depthai/utility/spimpl.h"
 
 namespace dai {
 
-class ThreadedNode : public Node {
+class DEPTHAI_API ThreadedNode : public Node {
    private:
     JoiningThread thread;
     AtomicBool running{false};

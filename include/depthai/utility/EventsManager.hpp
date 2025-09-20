@@ -13,6 +13,7 @@
 #include "depthai/pipeline/datatype/EncodedFrame.hpp"
 #include "depthai/pipeline/datatype/ImgFrame.hpp"
 #include "depthai/pipeline/datatype/NNData.hpp"
+#include "depthai/utility/export.hpp"
 
 namespace dai {
 namespace proto {
@@ -22,7 +23,7 @@ class Event;
 }  // namespace proto
 namespace utility {
 enum class EventDataType { DATA, FILE_URL, IMG_FRAME, ENCODED_FRAME, NN_DATA };
-class EventData {
+class DEPTHAI_API EventData {
    public:
     EventData(const std::string& data, const std::string& fileName, const std::string& mimeType);
     explicit EventData(std::string fileUrl);
@@ -38,7 +39,7 @@ class EventData {
     EventDataType type;
     friend class EventsManager;
 };
-class EventsManager {
+class DEPTHAI_API EventsManager {
    public:
     explicit EventsManager(std::string url = "https://events-ingest.cloud.luxonis.com", bool uploadCachedOnStart = false, float publishInterval = 10.0);
     ~EventsManager();

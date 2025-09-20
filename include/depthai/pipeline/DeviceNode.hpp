@@ -5,10 +5,11 @@
 #include "depthai/device/Device.hpp"
 #include "depthai/pipeline/Node.hpp"
 #include "depthai/pipeline/ThreadedNode.hpp"
+#include "depthai/utility/export.hpp"
 
 namespace dai {
 
-class DeviceNode : public ThreadedNode {
+class DEPTHAI_API DeviceNode : public ThreadedNode {
    protected:
     std::shared_ptr<Device> device;
 
@@ -86,7 +87,7 @@ class DeviceNodeCRTP : public Base {
         return nodePtr;
     }
     [[nodiscard]] static std::shared_ptr<Derived> create(std::unique_ptr<Properties> props) {
-        return std::shared_ptr<Derived>(new Derived(props));
+        return std::shared_ptr<Derived>(new Derived(std::move(props)));
     }
 
    protected:
@@ -103,7 +104,7 @@ class DeviceNodeCRTP : public Base {
     friend PipelineImpl;
 };
 
-class HostRunnable {
+class DEPTHAI_API HostRunnable {
    public:
     HostRunnable() = default;
     virtual ~HostRunnable();  // Has to be virtual for std::dynamic_cast to be used reliably

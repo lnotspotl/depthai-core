@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.20)
 include(cmake/depthaiOptions.cmake)
 
 if(WIN32)
-    add_compile_options(/MP)
+    add_compile_options(/MP /bigobj)
     set(CMAKE_DEBUG_POSTFIX "d" CACHE STRING "Postfix for debug libraries" FORCE)
 endif()
 
@@ -69,6 +69,10 @@ project(depthai VERSION "3.0.0" LANGUAGES CXX C)
 set(DEPTHAI_PRE_RELEASE_TYPE "") # Valid options are "alpha", "beta", "rc", ""
 set(DEPTHAI_PRE_RELEASE_VERSION "0") # Valid options are "0", "1", "2", ...
 
+if(BUILD_SHARED_LIBS)
+    add_compile_definitions(USE_DEPTHAI_DLL)
+endif()
+
 # Set DEPTHAI_VERSION universally, not conditionally
 if(DEPTHAI_PRE_RELEASE_TYPE STREQUAL "")
     set(DEPTHAI_VERSION ${PROJECT_VERSION})
@@ -109,11 +113,6 @@ if(FORCE_COLORED_OUTPUT)
     elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
        add_compile_options(-fcolor-diagnostics)
     endif()
-endif()
-
-# Specify exporting all symbols on Windows
-if(WIN32 AND BUILD_SHARED_LIBS)
-    set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON CACHE BOOL "")
 endif()
 
 ### Constants
@@ -452,6 +451,9 @@ endif()
 
 add_library(${TARGET_CORE_NAME} ${TARGET_CORE_SOURCES})
 add_library("${PROJECT_NAME}::${TARGET_CORE_ALIAS}" ALIAS ${TARGET_CORE_NAME})
+if(BUILD_SHARED_LIBS)
+    target_compile_definitions(${TARGET_CORE_NAME} PRIVATE DEPTHAI_DLL_EXPORT)
+endif()
 # Specify that we are building core
 target_compile_definitions(${TARGET_CORE_NAME} PUBLIC DEPTHAI_TARGET_CORE)
 # Specifies name of generated IMPORTED target (set to alias)
@@ -509,6 +511,7 @@ endif()
 
 # Add default flags to core
 add_default_flags(${TARGET_CORE_NAME})
+add_flag(${TARGET_CORE_NAME} -fvisibility=hidden)
 
 if(DEPTHAI_VCPKG_INTERNAL_ONLY)
     exclude_archive_libs_symbols(${TARGET_CORE_NAME})
@@ -923,11 +926,15 @@ if(DEPTHAI_HAVE_OPENCV_SUPPORT AND NOT DEPTHAI_MERGED_TARGET)
         ${TARGET_OPENCV_SOURCES}
     )
     add_library("${PROJECT_NAME}::${TARGET_OPENCV_ALIAS}" ALIAS ${TARGET_OPENCV_NAME})
+    if(BUILD_SHARED_LIBS)
+        target_compile_definitions(${TARGET_OPENCV_NAME} PRIVATE DEPTHAI_DLL_EXPORT)
+    endif()
     # Specifies name of generated IMPORTED target (set to alias)
     set_target_properties(${TARGET_OPENCV_NAME} PROPERTIES EXPORT_NAME ${TARGET_OPENCV_ALIAS})
 
     # Add default flags
     add_default_flags(${TARGET_OPENCV_NAME})
+    add_flag(${TARGET_OPENCV_NAME} -fvisibility=hidden)
 
     # Link to OpenCV (publically)
     target_link_libraries(${TARGET_OPENCV_NAME} PUBLIC ${REQUIRED_OPENCV_LIBRARIES} ${THIRDPARTY_OPENCV_LIBRARIES})
@@ -955,11 +962,15 @@ if(DEPTHAI_HAVE_PCL_SUPPORT AND NOT DEPTHAI_MERGED_TARGET)
         # Add depthai-core-pcl library and depthai::core::pcl alias
         add_library(${TARGET_PCL_NAME} ${TARGET_PCL_SOURCES})
         add_library("${PROJECT_NAME}::${TARGET_PCL_ALIAS}" ALIAS ${TARGET_PCL_NAME})
+        if(BUILD_SHARED_LIBS)
+            target_compile_definitions(${TARGET_PCL_NAME} PRIVATE DEPTHAI_DLL_EXPORT)
+        endif()
         # Specifies name of generated IMPORTED target (set to alias)
         set_target_properties(${TARGET_PCL_NAME} PROPERTIES EXPORT_NAME ${TARGET_PCL_ALIAS})
 
         # Add default flags
         add_default_flags(${TARGET_PCL_NAME})
+        add_flag(${TARGET_PCL_NAME} -fvisibility=hidden)
 
         # Link to PCL (publically)
         target_link_libraries(${TARGET_PCL_NAME} PUBLIC ${PCL_LIBRARIES})
@@ -1000,12 +1011,16 @@ if(DEPTHAI_HAVE_RTABMAP_SUPPORT AND NOT DEPTHAI_MERGED_TARGET)
     src/rtabmap/RTABMapVIO.cpp src/rtabmap/RTABMapSLAM.cpp
     )
     add_library("${PROJECT_NAME}::${TARGET_RTABMAP_ALIAS}" ALIAS ${TARGET_RTABMAP_NAME})
+    if(BUILD_SHARED_LIBS)
+        target_compile_definitions(${TARGET_RTABMAP_NAME} PRIVATE DEPTHAI_DLL_EXPORT)
+    endif()
     # Specifies name of generated IMPORTED target (set to alias)
     set_target_properties(${TARGET_RTABMAP_NAME} PROPERTIES EXPORT_NAME ${TARGET_RTABMAP_ALIAS})
 
     # Add default flags
     add_default_flags(${TARGET_RTABMAP_NAME})
     add_flag(${TARGET_RTABMAP_NAME} -Wno-switch-enum)
+    add_flag(${TARGET_RTABMAP_NAME} -fvisibility=hidden)
     # Link to RTABMap (publically)
     target_link_libraries(${TARGET_RTABMAP_NAME} PUBLIC rtabmap::core ${TARGET_OPENCV_NAME} ${TARGET_PCL_NAME} ${THIRDPARTY_RTABMAP_LIBRARIES} PRIVATE spdlog::spdlog)
 
@@ -1039,6 +1054,9 @@ if(DEPTHAI_HAVE_BASALT_SUPPORT AND NOT DEPTHAI_MERGED_TARGET)
     # Add depthai-basalt library and depthai::basalt alias
     add_library(${TARGET_BASALT_NAME} src/basalt/BasaltVIO.cpp )
     add_library("${PROJECT_NAME}::${TARGET_BASALT_ALIAS}" ALIAS ${TARGET_BASALT_NAME})
+    if(BUILD_SHARED_LIBS)
+        target_compile_definitions(${TARGET_BASALT_NAME} PRIVATE DEPTHAI_DLL_EXPORT)
+    endif()
 
     # Specifies name of generated IMPORTED target (set to alias)
     set_target_properties(${TARGET_BASALT_NAME} PROPERTIES EXPORT_NAME ${TARGET_BASALT_ALIAS})
@@ -1046,7 +1064,7 @@ if(DEPTHAI_HAVE_BASALT_SUPPORT AND NOT DEPTHAI_MERGED_TARGET)
     # Add default flags
     add_default_flags(${TARGET_BASALT_NAME})
     add_flag(${TARGET_BASALT_NAME} -Wno-switch-enum)
-
+    add_flag(${TARGET_BASALT_NAME} -fvisibility=hidden)
     # Link to Basalt (publically)
     target_link_libraries(${TARGET_BASALT_NAME} PUBLIC ${THIRDPARTY_BASALT_LIBRARIES} ${TARGET_OPENCV_NAME} PRIVATE spdlog::spdlog)
     # Add public compile definition indicating that Basalt support is available
@@ -1078,6 +1096,9 @@ set(TARGET_ALL_NAME ${PROJECT_NAME}-all)
 if(DEPTHAI_HAVE_OPENCV_SUPPORT AND DEPTHAI_HAVE_PCL_SUPPORT AND DEPTHAI_HAVE_BASALT_SUPPORT AND DEPTHAI_HAVE_RTABMAP_SUPPORT)
     add_library(${TARGET_ALL_NAME} INTERFACE)
     add_library("${PROJECT_NAME}::${TARGET_ALL_ALIAS}" ALIAS ${TARGET_ALL_NAME})
+    if(BUILD_SHARED_LIBS)
+        target_compile_definitions(${TARGET_ALL_NAME} PRIVATE DEPTHAI_DLL_EXPORT)
+    endif()
     # Specifies name of generated IMPORTED target (set to alias)
     set_target_properties(${TARGET_ALL_NAME} PROPERTIES EXPORT_NAME ${TARGET_ALL_ALIAS})
     target_link_libraries(${TARGET_ALL_NAME} INTERFACE ${TARGET_CORE_NAME} ${TARGET_OPENCV_NAME} ${TARGET_PCL_NAME} ${TARGET_BASALT_NAME} ${TARGET_RTABMAP_NAME})

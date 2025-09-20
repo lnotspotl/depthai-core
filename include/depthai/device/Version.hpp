@@ -4,11 +4,13 @@
 #include <optional>
 #include <string>
 
+#include "depthai/utility/export.hpp"
 #include "depthai/utility/spimpl.h"
+
 namespace dai {
 
 /// Version structure
-struct Version {
+struct DEPTHAI_API Version {
     enum class PreReleaseType : uint16_t {
         ALPHA = 0,
         BETA = 1,

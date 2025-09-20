@@ -12,6 +12,7 @@
 #include <sstream>
 
 #include "depthai/common/RotatedRect.hpp"
+#include "depthai/utility/export.hpp"
 
 #ifdef DEPTHAI_HAVE_OPENCV_SUPPORT
     #include <opencv2/core/base.hpp>
@@ -247,7 +248,7 @@ struct FrameSpecs {
 };
 
 #ifdef DEPTHAI_HAVE_OPENCV_SUPPORT
-class UndistortOpenCvImpl {
+class DEPTHAI_API UndistortOpenCvImpl {
    public:
     enum class BuildStatus { ONE_SHOT, TWO_SHOT, NOT_USED, NOT_BUILT, ERROR };
 
@@ -293,7 +294,7 @@ class UndistortOpenCvImpl {
 #endif
 
 template <template <typename T> typename ImageManipBuffer, typename ImageManipData>
-class Warp {
+class DEPTHAI_API Warp {
    protected:
     using Container = std::vector<ManipOp>;
 
@@ -390,7 +391,7 @@ class WarpH : public Warp<ImageManipBuffer, ImageManipData> {
 };
 
 template <template <typename T> typename ImageManipBuffer, typename ImageManipData>
-class ColorChange {
+class DEPTHAI_API ColorChange {
     std::shared_ptr<spdlog::async_logger> logger;
 
     std::shared_ptr<ImageManipData> ccAuxFrame;
@@ -459,7 +460,7 @@ template <template <typename T> typename ImageManipBuffer,
           typename ImageManipData,
           template <template <typename T> typename Buf, typename Dat>
           typename WarpBackend>
-class ImageManipOperations {
+class DEPTHAI_API ImageManipOperations {
     static_assert(std::is_base_of<Warp<ImageManipBuffer, ImageManipData>, WarpBackend<ImageManipBuffer, ImageManipData>>::value,
                   "WarpBackend must be derived from Warp");
     using Container = std::vector<ManipOp>;
@@ -537,8 +538,8 @@ class ImageManipOperations {
     std::string toString() const;
 };
 
-FrameSpecs getSrcFrameSpecs(dai::ImgFrame::Specs srcSpecs);
-size_t getAlignedOutputFrameSize(ImgFrame::Type type, size_t width, size_t height);
+DEPTHAI_API FrameSpecs getSrcFrameSpecs(dai::ImgFrame::Specs srcSpecs);
+DEPTHAI_API size_t getAlignedOutputFrameSize(ImgFrame::Type type, size_t width, size_t height);
 
 }  // namespace impl
 }  // namespace dai
@@ -556,45 +557,45 @@ constexpr T ALIGN_UP(T value, std::size_t alignment) {
 }
 #endif
 
-FrameSpecs getSrcFrameSpecs(dai::ImgFrame::Specs srcSpecs);
-FrameSpecs getCcDstFrameSpecs(FrameSpecs srcSpecs, dai::ImgFrame::Type from, dai::ImgFrame::Type to);
-FrameSpecs getDstFrameSpecs(size_t width, size_t height, dai::ImgFrame::Type type);
+DEPTHAI_API FrameSpecs getSrcFrameSpecs(dai::ImgFrame::Specs srcSpecs);
+DEPTHAI_API FrameSpecs getCcDstFrameSpecs(FrameSpecs srcSpecs, dai::ImgFrame::Type from, dai::ImgFrame::Type to);
+DEPTHAI_API FrameSpecs getDstFrameSpecs(size_t width, size_t height, dai::ImgFrame::Type type);
 
-void transformOpenCV(const uint8_t* src,
-                     uint8_t* dst,
-                     const size_t srcWidth,
-                     const size_t srcHeight,
-                     const size_t srcStride,
-                     const size_t dstWidth,
-                     const size_t dstHeight,
-                     const size_t dstStride,
-                     const uint16_t numChannels,
-                     const uint16_t bpp,
-                     const std::array<std::array<float, 3>, 3> matrix,
-                     const std::vector<uint32_t>& background,
-                     const FrameSpecs& srcImgSpecs,
-                     const size_t sourceMinX,
-                     const size_t sourceMinY,
-                     const size_t sourceMaxX,
-                     const size_t sourceMaxY);
-void transformFastCV(const uint8_t* src,
-                     uint8_t* dst,
-                     const size_t srcWidth,
-                     const size_t srcHeight,
-                     const size_t srcStride,
-                     const size_t dstWidth,
-                     const size_t dstHeight,
-                     const size_t dstStride,
-                     const uint16_t numChannels,
-                     const uint16_t bpp,
-                     const std::array<std::array<float, 3>, 3> matrix,
-                     const std::vector<uint32_t>& background,
-                     const FrameSpecs& srcImgSpecs,
-                     const size_t sourceMinX,
-                     const size_t sourceMinY,
-                     const size_t sourceMaxX,
-                     const size_t sourceMaxY,
-                     uint32_t* fastCvBorder);
+DEPTHAI_API void transformOpenCV(const uint8_t* src,
+                                 uint8_t* dst,
+                                 const size_t srcWidth,
+                                 const size_t srcHeight,
+                                 const size_t srcStride,
+                                 const size_t dstWidth,
+                                 const size_t dstHeight,
+                                 const size_t dstStride,
+                                 const uint16_t numChannels,
+                                 const uint16_t bpp,
+                                 const std::array<std::array<float, 3>, 3> matrix,
+                                 const std::vector<uint32_t>& background,
+                                 const FrameSpecs& srcImgSpecs,
+                                 const size_t sourceMinX,
+                                 const size_t sourceMinY,
+                                 const size_t sourceMaxX,
+                                 const size_t sourceMaxY);
+DEPTHAI_API void transformFastCV(const uint8_t* src,
+                                 uint8_t* dst,
+                                 const size_t srcWidth,
+                                 const size_t srcHeight,
+                                 const size_t srcStride,
+                                 const size_t dstWidth,
+                                 const size_t dstHeight,
+                                 const size_t dstStride,
+                                 const uint16_t numChannels,
+                                 const uint16_t bpp,
+                                 const std::array<std::array<float, 3>, 3> matrix,
+                                 const std::vector<uint32_t>& background,
+                                 const FrameSpecs& srcImgSpecs,
+                                 const size_t sourceMinX,
+                                 const size_t sourceMinY,
+                                 const size_t sourceMaxX,
+                                 const size_t sourceMaxY,
+                                 uint32_t* fastCvBorder);
 
 static inline int clampi(int val, int minv, int maxv) {
     // return val < minv ? minv : (val > maxv ? maxv : val);
@@ -605,9 +606,9 @@ static inline float clampf(float val, float minv, float maxv) {
     return std::clamp(val, minv, maxv);
 }
 
-bool isTypeSupported(dai::ImgFrame::Type type);
+DEPTHAI_API bool isTypeSupported(dai::ImgFrame::Type type);
 
-bool getFrameTypeInfo(dai::ImgFrame::Type outFrameType, int& outNumPlanes, float& outBpp);
+DEPTHAI_API bool getFrameTypeInfo(dai::ImgFrame::Type outFrameType, int& outNumPlanes, float& outBpp);
 
 //-----------------------------
 //--- Frame type conversion ---
@@ -2584,26 +2585,26 @@ inline std::array<float, 2> matvecmul(std::array<std::array<float, 2>, 2> M, std
     return {x, y};
 }
 
-std::tuple<float, float, float, float> getOuterRect(const std::vector<std::array<float, 2>> points);
+DEPTHAI_API std::tuple<float, float, float, float> getOuterRect(const std::vector<std::array<float, 2>> points);
 
-std::vector<std::array<float, 2>> getHull(const std::vector<std::array<float, 2>> points);
+DEPTHAI_API std::vector<std::array<float, 2>> getHull(const std::vector<std::array<float, 2>> points);
 
-std::array<std::array<float, 2>, 2> getInverse(const std::array<std::array<float, 2>, 2> mat);
+DEPTHAI_API std::array<std::array<float, 2>, 2> getInverse(const std::array<std::array<float, 2>, 2> mat);
 
-std::array<std::array<float, 3>, 3> getInverse(const std::array<std::array<float, 3>, 3>& matrix);
+DEPTHAI_API std::array<std::array<float, 3>, 3> getInverse(const std::array<std::array<float, 3>, 3>& matrix);
 
-std::array<std::array<float, 2>, 4> getOuterRotatedRect(const std::vector<std::array<float, 2>>& points);
+DEPTHAI_API std::array<std::array<float, 2>, 4> getOuterRotatedRect(const std::vector<std::array<float, 2>>& points);
 
-dai::RotatedRect getRotatedRectFromPoints(const std::vector<std::array<float, 2>>& points);
+DEPTHAI_API dai::RotatedRect getRotatedRectFromPoints(const std::vector<std::array<float, 2>>& points);
 
-std::array<std::array<float, 3>, 3> getResizeMat(Resize o, float width, float height, uint32_t outputWidth, uint32_t outputHeight);
+DEPTHAI_API std::array<std::array<float, 3>, 3> getResizeMat(Resize o, float width, float height, uint32_t outputWidth, uint32_t outputHeight);
 
-void getTransformImpl(const ManipOp& op,
-                      std::array<std::array<float, 3>, 3>& transform,
-                      std::array<std::array<float, 2>, 4>& imageCorners,
-                      std::vector<std::array<std::array<float, 2>, 4>>& srcCorners,
-                      uint32_t& outputWidth,
-                      uint32_t& outputHeight);
+DEPTHAI_API void getTransformImpl(const ManipOp& op,
+                                  std::array<std::array<float, 3>, 3>& transform,
+                                  std::array<std::array<float, 2>, 4>& imageCorners,
+                                  std::vector<std::array<std::array<float, 2>, 4>>& srcCorners,
+                                  uint32_t& outputWidth,
+                                  uint32_t& outputHeight);
 
 template <typename C>
 std::tuple<std::array<std::array<float, 3>, 3>, std::array<std::array<float, 2>, 4>, std::vector<std::array<std::array<float, 2>, 4>>> getTransform(
@@ -2617,13 +2618,13 @@ std::tuple<std::array<std::array<float, 3>, 3>, std::array<std::array<float, 2>,
     return {transform, imageCorners, srcCorners};
 }
 
-void getOutputSizeFromCorners(const std::array<std::array<float, 2>, 4>& corners,
-                              const bool center,
-                              const std::array<std::array<float, 3>, 3> transformInv,
-                              const uint32_t srcWidth,
-                              const uint32_t srcHeight,
-                              uint32_t& outputWidth,
-                              uint32_t& outputHeight);
+DEPTHAI_API void getOutputSizeFromCorners(const std::array<std::array<float, 2>, 4>& corners,
+                                          const bool center,
+                                          const std::array<std::array<float, 3>, 3> transformInv,
+                                          const uint32_t srcWidth,
+                                          const uint32_t srcHeight,
+                                          uint32_t& outputWidth,
+                                          uint32_t& outputHeight);
 
 template <typename C>
 std::tuple<std::array<std::array<float, 3>, 3>, std::array<std::array<float, 2>, 4>, std::vector<std::array<std::array<float, 2>, 4>>> getFullTransform(
@@ -2822,7 +2823,7 @@ ImageManipOperations<ImageManipBuffer, ImageManipData, WarpBackend>& ImageManipO
     return *this;
 }
 
-size_t getFrameSize(const ImgFrame::Type type, const FrameSpecs& specs);
+DEPTHAI_API size_t getFrameSize(const ImgFrame::Type type, const FrameSpecs& specs);
 
 template <template <typename T> typename ImageManipBuffer,
           typename ImageManipData,

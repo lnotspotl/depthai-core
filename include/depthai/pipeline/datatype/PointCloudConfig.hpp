@@ -4,13 +4,14 @@
 #include <vector>
 
 #include "depthai/pipeline/datatype/Buffer.hpp"
+#include "depthai/utility/export.hpp"
 
 namespace dai {
 
 /**
  * PointCloudConfig message. Carries ROI (region of interest) and threshold for depth calculation
  */
-class PointCloudConfig : public Buffer {
+class DEPTHAI_API PointCloudConfig : public Buffer {
     bool sparse = false;
 
     std::array<std::array<float, 4>, 4> transformationMatrix = {{{1, 0, 0, 0}, {0, 1, 0, 0}, {0, 0, 1, 0}, {0, 0, 0, 1}}};

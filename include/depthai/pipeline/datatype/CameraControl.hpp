@@ -5,6 +5,7 @@
 #include <vector>
 
 #include "depthai/pipeline/datatype/Buffer.hpp"
+#include "depthai/utility/export.hpp"
 
 namespace dai {
 
@@ -29,7 +30,7 @@ namespace dai {
  *  50Hz mains frequency.
  *
  */
-class CameraControl : public Buffer {
+class DEPTHAI_API CameraControl : public Buffer {
    public:
     CameraControl() = default;
     virtual ~CameraControl() = default;

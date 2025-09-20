@@ -245,6 +245,10 @@ class RGBD::Impl {
 
 RGBD::RGBD() = default;
 
+RGBD::RGBD(std::unique_ptr<Properties> props) {
+    (void)props;  // Unused parameter
+}
+
 RGBD::~RGBD() = default;
 
 void RGBD::buildInternal() {

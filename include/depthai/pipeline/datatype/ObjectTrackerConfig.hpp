@@ -4,13 +4,14 @@
 #include <vector>
 
 #include "depthai/pipeline/datatype/Buffer.hpp"
+#include "depthai/utility/export.hpp"
 
 namespace dai {
 
 /**
  * ObjectTrackerConfig message. Carries ROI (region of interest) and threshold for depth calculation
  */
-class ObjectTrackerConfig : public Buffer {
+class DEPTHAI_API ObjectTrackerConfig : public Buffer {
    public:
     /**
      * Construct ObjectTrackerConfig message.
