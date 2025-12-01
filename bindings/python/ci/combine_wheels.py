@@ -177,7 +177,7 @@ def _generate_record_file(staging_dir: str, dist_info_dir: str):
                 record_file.write(f"{rel_path},sha256={file_hash},{file_size}\n")
         
         # Add entry for the RECORD file itself (hash and size are empty as per PEP 427)
-        record_rel_path = os.path.relpath(record_path, staging_dir)
+        record_rel_path = os.path.relpath(record_path, staging_dir).replace("\\", "/")
         record_file.write(f"{record_rel_path},,\n")
     
     return record_path
@@ -210,7 +210,7 @@ def _update_wheel_file(dist_info_dir: str, combined_info: WheelInfo):
         new_lines.append(f"Tag: {py_tag}-{py_tag}-{plat_tag}\n")
 
     # Write the updated content back
-    with open(wheel_path, "w") as f:
+    with open(wheel_path, "w", encoding="utf-8") as f:
         f.writelines(new_lines)
 
 
